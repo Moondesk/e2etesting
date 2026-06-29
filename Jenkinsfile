@@ -45,11 +45,12 @@ pipeline {
       }
     }
 
-    stage('Install Dependencies') {
+/*    stage('Install Dependencies') {
       steps {
         runCommand('npm ci')
       }
-    }
+    } 
+    */ 
 
     /* stage('Install Playwright Browsers') {
       steps {
