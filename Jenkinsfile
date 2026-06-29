@@ -55,9 +55,9 @@ pipeline {
       steps {
         script {
           if (isUnix()) {
-            runCommand('npx playwright install --with-deps')
-          } else {
             runCommand('npx playwright install', 'npx playwright install')
+          } else {
+            runCommand('npx playwright install --with-deps')
           }
         }
       }
