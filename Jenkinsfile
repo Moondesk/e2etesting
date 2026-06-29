@@ -10,7 +10,7 @@ pipeline {
  agent any
 
   tools {
-     nodejs 'Node26'
+     nodejs 'node26'
   }
   
   options {
