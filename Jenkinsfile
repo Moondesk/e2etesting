@@ -51,19 +51,18 @@ pipeline {
       }
     }
 
-    stage('Install Playwright Browsers') {
+    /* stage('Install Playwright Browsers') {
       steps {
         script {
           if (isUnix()) {
-            runCommand('npx playwright install', 'npx playwright install','sudo dnf install -y libX11 libXcomposite libXcursor libXdamage libXfixes gtk3 pango atk cairo gdk-pixbuf2
-')
+            runCommand('npx playwright install', 'npx playwright install')
           } else {
             runCommand('sudo dnf install -y libX11 libXcomposite libXcursor libXdamage libXfixes gtk3 pango atk cairo gdk-pixbuf2
 ')
           }
         }
       }
-    }
+    } */
 
     stage('Run Tests') {
       steps {
