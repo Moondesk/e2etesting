@@ -21,7 +21,7 @@ pipeline {
 
   parameters {
     choice(
-      name: 'Test Suites',
+      name: 'TEST_COMMAND',
       choices: [
         'npm test',
         'npm run test:e2e',
