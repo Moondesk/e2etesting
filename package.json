@@ -1,0 +1,29 @@
+{
+  "name": "agentice2e",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "node scripts/run-cucumber-with-report.js",
+    "test:exploratory": "node scripts/run-cucumber-with-report.js --profile exploratory",
+    "test:e2e": "node scripts/run-cucumber-with-report.js --profile e2e",
+    "test:search": "node scripts/run-cucumber-with-report.js --profile search",
+    "test:cart": "node scripts/run-cucumber-with-report.js --profile cart",
+    "test:registration": "node scripts/run-cucumber-with-report.js --profile registration",
+    "test:smoke": "node scripts/run-cucumber-with-report.js --profile smoke",
+    "test:debug": "node scripts/run-cucumber-with-report.js --profile debug",
+    "test:chrome": "node scripts/run-cucumber-with-report.js --profile chrome",
+    "test:firefox": "node scripts/run-cucumber-with-report.js --profile firefox",
+    "test:webkit": "node scripts/run-cucumber-with-report.js --profile webkit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@cucumber/cucumber": "^11.2.0",
+    "@playwright/test": "^1.61.0",
+    "@types/node": "^25.9.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  }
+}

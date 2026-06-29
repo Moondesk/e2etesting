@@ -1,0 +1,16 @@
+{
+  "cucumberautocomplete.steps": [
+    "tests/bdd/steps/**/*.ts"
+  ],
+  "cucumberautocomplete.syncfeatures": "tests/bdd/features/**/*.feature",
+  "cucumberautocomplete.strictGherkinCompletion": true,
+  "cucumberautocomplete.strictGherkinValidation": true,
+  "cucumberautocomplete.gherkinDefinitionPart": "(Given|When|Then)\\(",
+  "cucumberautocomplete.stepRegExSymbol": "'",
+  "cucumberautocomplete.pureTextSteps": true,
+  "editor.quickSuggestions": {
+    "comments": false,
+    "strings": true,
+    "other": true
+  }
+}

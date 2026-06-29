@@ -1,0 +1,56 @@
+name: QA Workflow
+
+on:
+  workflow_dispatch:
+
+env:
+  QA_PROMPT_PATH: QAE2E_Prompt.md
+  QA_PLAN_PATH: specs/bertrand-e2e-plan.md
+  QA_REPORT_PATH: test-results/bertrand-test-report.md
+
+jobs:
+  qa-workflow:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Start Playwright MCP server
+        run: |
+          npx playwright run-test-mcp-server --host 0.0.0.0 --port 9333 &
+          echo $! > /tmp/playwright_mcp.pid
+
+      - name: Wait for MCP server
+        run: |
+          for i in $(seq 1 20); do
+            if curl --silent --head http://127.0.0.1:9333 | grep -E 'HTTP/[0-9]\.[0-9] (200|403|404)' >/dev/null; then
+              echo "MCP server is available"
+              exit 0
+            fi
+            sleep 1
+          done
+          echo "MCP server did not start in time"
+          exit 1
+
+      - name: QA workflow guidance
+        run: |
+          echo "Local MCP server started on http://127.0.0.1:9333"
+          echo "Use the agent definitions in .github/agents/ to execute the full QA workflow based on ${QA_PROMPT_PATH}."
+          echo "Expected outputs: ${QA_PLAN_PATH}, tests/, ${QA_REPORT_PATH}, and artifacts/screenshots."
+
+      - name: Stop Playwright MCP server
+        if: always()
+        run: |
+          if [ -f /tmp/playwright_mcp.pid ]; then
+            kill $(cat /tmp/playwright_mcp.pid) || true
+          fi
