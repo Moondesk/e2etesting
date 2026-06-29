@@ -7,8 +7,12 @@ def runCommand(String unixCommand, String windowsCommand = null) {
 }
 
 pipeline {
-  agent any
+ agent any
 
+  tools {
+     nodejs 'Node26'
+  }
+  
   options {
     timestamps()
     disableConcurrentBuilds()
