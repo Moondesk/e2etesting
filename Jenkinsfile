@@ -55,9 +55,11 @@ pipeline {
       steps {
         script {
           if (isUnix()) {
-            runCommand('npx playwright install', 'npx playwright install')
+            runCommand('npx playwright install', 'npx playwright install','sudo dnf install -y libX11 libXcomposite libXcursor libXdamage libXfixes gtk3 pango atk cairo gdk-pixbuf2
+')
           } else {
-            runCommand('npx playwright install --with-deps')
+            runCommand('sudo dnf install -y libX11 libXcomposite libXcursor libXdamage libXfixes gtk3 pango atk cairo gdk-pixbuf2
+')
           }
         }
       }
